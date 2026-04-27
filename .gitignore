@@ -10,6 +10,13 @@
 !.yarn/releases
 !.yarn/versions
 
+# project-local npm cache
+.npm-cache/
+
+# IDE / OS
+.idea/
+.vscode/
+
 # testing
 /coverage
 
@@ -32,6 +39,7 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
 
 # vercel
 .vercel
