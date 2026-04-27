@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import { BrandPlaceholder } from "@/components/brand-placeholder";
 
 export function ChefTeaser() {
   return (
@@ -10,14 +10,15 @@ export function ChefTeaser() {
       <div className="mx-auto max-w-screen-2xl px-5 md:px-10 py-24 md:py-32 grid gap-12 md:gap-20 md:grid-cols-12 items-center">
         <div className="md:col-span-5 md:col-start-2">
           <figure className="relative aspect-[4/5] overflow-hidden bg-surface">
-            <Image
-              src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=900&q=80"
-              alt="PLACEHOLDER: portrait of Chef Vee in the kitchen — replace with real shoot"
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 40vw"
-              quality={75}
+            <BrandPlaceholder
+              primary="Chef Vee"
+              secondary="Founder · Lagos → Leicester"
+              seed="chef-vee-portrait"
+              className="absolute inset-0"
             />
+            <figcaption className="sr-only">
+              Portrait of Chef Vee — placeholder until shoot is delivered
+            </figcaption>
           </figure>
         </div>
         <div className="md:col-span-5">

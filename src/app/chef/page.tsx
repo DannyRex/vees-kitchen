@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { BrandPlaceholder } from "@/components/brand-placeholder";
 
 export const metadata: Metadata = {
   title: "Chef Vee",
@@ -49,15 +49,16 @@ export default function ChefPage() {
         </header>
 
         <figure className="relative h-[60svh] md:h-[80svh] overflow-hidden">
-          <Image
-            src="https://images.unsplash.com/photo-1607631568010-a87245c0daf8?auto=format&fit=crop&w=1800&q=80"
-            alt="PLACEHOLDER: portrait of Chef Vee — replace with real shoot"
-            fill
-            className="object-cover"
-            sizes="100vw"
-            quality={80}
-            priority
+          <BrandPlaceholder
+            primary="Chef Vee"
+            secondary="In her kitchen · Leicester"
+            seed="chef-vee-hero"
+            className="absolute inset-0"
           />
+          <figcaption className="sr-only">
+            A portrait of Chef Vee in the Leicester kitchen — placeholder
+            graphic until photography is shot.
+          </figcaption>
         </figure>
 
         <div className="mx-auto max-w-screen-md px-5 md:px-10 py-24 md:py-32 prose-editorial">

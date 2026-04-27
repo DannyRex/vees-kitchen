@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import type { Dish } from "@/lib/menu";
+import { BrandPlaceholder } from "@/components/brand-placeholder";
 
 interface Props {
   dish: Dish;
@@ -32,15 +33,24 @@ export function DishCard({ dish, index, orderable = true }: Props) {
         }
       >
         <figure className="relative aspect-[4/5] overflow-hidden bg-surface">
-          <Image
-            src={dish.image.src}
-            alt={dish.image.alt}
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 50vw"
-            quality={75}
-          />
-          <figcaption className="sr-only">{dish.image.alt}</figcaption>
+          {dish.imageSrc ? (
+            <Image
+              src={dish.imageSrc}
+              alt={dish.imageAlt}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+              quality={75}
+            />
+          ) : (
+            <BrandPlaceholder
+              primary={dish.nativeName ?? dish.name}
+              secondary={`${dish.region} · £${dish.price}`}
+              seed={dish.slug}
+              className="absolute inset-0"
+            />
+          )}
+          <figcaption className="sr-only">{dish.imageAlt}</figcaption>
         </figure>
       </div>
 

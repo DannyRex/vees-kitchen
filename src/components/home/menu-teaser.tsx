@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { DISHES, SEASON } from "@/lib/menu";
+import { BrandPlaceholder } from "@/components/brand-placeholder";
 
 export function MenuTeaser() {
   // Show 3 dishes — the smoked-marrow jollof, egusi, and chin-chin make a
@@ -41,14 +42,23 @@ export function MenuTeaser() {
               className="block focus:outline-none"
             >
               <figure className="relative aspect-[4/5] overflow-hidden bg-surface">
-                <Image
-                  src={dish.image.src}
-                  alt={dish.image.alt}
-                  fill
-                  className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  quality={75}
-                />
+                {dish.imageSrc ? (
+                  <Image
+                    src={dish.imageSrc}
+                    alt={dish.imageAlt}
+                    fill
+                    className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    quality={75}
+                  />
+                ) : (
+                  <BrandPlaceholder
+                    primary={dish.nativeName ?? dish.name}
+                    secondary={`${dish.region} · £${dish.price}`}
+                    seed={dish.slug}
+                    className="absolute inset-0 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
+                  />
+                )}
               </figure>
               <div className="mt-5">
                 <p className="text-eyebrow text-faint mb-2">

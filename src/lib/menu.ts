@@ -26,11 +26,13 @@ export interface Dish {
   blurb: string; // 2–3 sentence sensorial description
   ingredients: string[]; // 4–6 hero ingredients
   pairing: string; // wine / drink suggestion (delivery context)
-  /** PLACEHOLDER: replace with shoot image — see docs/shoot-brief.md */
-  image: {
-    src: string;
-    alt: string;
-  };
+  /**
+   * Until photography is shot, dishes use the brand-placeholder SVG
+   * keyed off `slug`. Once shoot images are in, add `imageSrc` here and
+   * the components will prefer it over the placeholder.
+   */
+  imageSrc?: string;
+  imageAlt: string;
   /** Allergen / dietary flags */
   notes: string[];
 }
@@ -59,10 +61,8 @@ export const DISHES: Dish[] = [
       "Maldon salt",
     ],
     pairing: "A flute of dry English sparkling — Wiston Cuvée works.",
-    image: {
-      src: "https://images.unsplash.com/photo-1606755962773-d324e1f3acef?auto=format&fit=crop&w=1200&q=80",
-      alt: "PLACEHOLDER: Puff-puff dusted in spice — replace with real shoot",
-    },
+    imageAlt:
+      "A dozen golden-fried puff-puff rounds glossed with honey-tamarind",
     notes: ["Vegetarian", "Contains: gluten"],
   },
   {
@@ -82,10 +82,8 @@ export const DISHES: Dish[] = [
       "Smoked paprika",
     ],
     pairing: "Côtes du Rhône — Grenache-led, peppery, modest weight.",
-    image: {
-      src: "https://images.unsplash.com/photo-1604908554007-202416a14fe2?auto=format&fit=crop&w=1200&q=80",
-      alt: "PLACEHOLDER: A bowl of jollof rice with charred edges — replace with real shoot",
-    },
+    imageAlt:
+      "Smoky long-grain jollof rice with charred edges, folded with marrow brown butter",
     notes: ["Contains: dairy"],
   },
   {
@@ -105,10 +103,8 @@ export const DISHES: Dish[] = [
       "White yam",
     ],
     pairing: "An off-dry German Riesling — the residual sugar settles the heat.",
-    image: {
-      src: "https://images.unsplash.com/photo-1574484184081-afea8a62f9c8?auto=format&fit=crop&w=1200&q=80",
-      alt: "PLACEHOLDER: A dark stew with white yam — replace with real shoot",
-    },
+    imageAlt:
+      "Egusi stew with stockfish in palm oil, alongside a portion of warm pounded yam",
     notes: ["Contains: fish"],
   },
   {
@@ -128,10 +124,8 @@ export const DISHES: Dish[] = [
       "Lime",
     ],
     pairing: "Côte-Rôtie if you're feeling generous; otherwise a chilled Beaujolais.",
-    image: {
-      src: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80",
-      alt: "PLACEHOLDER: Charred beef skewers with onion and lime — replace with real shoot",
-    },
+    imageAlt:
+      "Charred suya skewers of aged rib-eye dredged in yaji, served with raw onion and lime",
     notes: ["Contains: peanut"],
   },
   {
@@ -151,10 +145,8 @@ export const DISHES: Dish[] = [
       "Boiled egg",
     ],
     pairing: "Cool palm wine if you can find it; otherwise a young Vinho Verde.",
-    image: {
-      src: "https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?auto=format&fit=crop&w=1200&q=80",
-      alt: "PLACEHOLDER: Green pepper stew over earthy rice — replace with real shoot",
-    },
+    imageAlt:
+      "Heirloom ofada rice beside a green pepper ayamase stew with iru and offal",
     notes: ["Contains: egg"],
   },
   {
@@ -174,10 +166,8 @@ export const DISHES: Dish[] = [
       "Demerara",
     ],
     pairing: "A small glass of Pedro Ximénez, very cold.",
-    image: {
-      src: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=1200&q=80",
-      alt: "PLACEHOLDER: Crisp golden squares dusted in sugar — replace with real shoot",
-    },
+    imageAlt:
+      "Crisp golden chin-chin squares dusted in cardamom sugar with clotted cream",
     notes: ["Vegetarian", "Contains: gluten, dairy, sesame"],
   },
 ];

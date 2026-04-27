@@ -45,12 +45,22 @@ content yet. `app/journal/page.tsx` shows three placeholder posts with a
 `client.fetch(postsQuery)`. Add `npx sanity init` and you're ten minutes
 from real posts.
 
-### Unsplash placeholders, not the real shoot
-Every food and portrait image is a marked Unsplash URL with
-`PLACEHOLDER:` in the alt text. The dish images in particular are
-approximations — most Nigerian food doesn't show up well in stock. When
-real photography is in, replace URLs in `src/lib/menu.ts` and the chef and
-home teasers.
+### Branded SVG placeholders, not stock photography
+Initially I used Unsplash URLs as dish placeholders. They proved
+unreliable — some photo IDs returned 404, others got rate-limited, and
+nearly all of them were wrong food anyway (most Nigerian dishes don't
+show well in stock libraries). I replaced them with `<BrandPlaceholder>`
+— an inline SVG component that renders a warm radial saffron/ochre glow
+on charcoal with a subtle "plate rim" suggestion and the dish name +
+region in the corner. Each placeholder uses a deterministic hash of the
+slug so the menu reads as a varied set of plates, not six identical
+cards.
+
+Reads as intentional brand minimalism, never broken. To swap in real
+photography, add `imageSrc` to the `Dish` entry in `src/lib/menu.ts` —
+components prefer the real image when present and fall back to the
+placeholder otherwise. Same pattern used for the Chef portrait on the
+home teaser and `/chef` page.
 
 ### Workspace root warning
 The dev server prints a warning about inferring the workspace root from a
