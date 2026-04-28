@@ -69,11 +69,14 @@ export default async function OpengraphImage() {
               letterSpacing: "-0.025em",
               fontWeight: 380,
               maxWidth: "1000px",
+              display: "flex",
+              flexDirection: "column",
             }}
           >
-            <span>Authentically </span>
-            <span style={{ color: "#d4881f" }}>Nigerian.</span>
-            <br />
+            <div style={{ display: "flex" }}>
+              <span>Authentically&nbsp;</span>
+              <span style={{ color: "#d4881f" }}>Nigerian.</span>
+            </div>
             <span style={{ fontStyle: "italic", opacity: 0.92 }}>
               Unapologetically refined.
             </span>
