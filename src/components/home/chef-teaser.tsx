@@ -1,5 +1,5 @@
+import Image from "next/image";
 import Link from "next/link";
-import { BrandPlaceholder } from "@/components/brand-placeholder";
 
 export function ChefTeaser() {
   return (
@@ -10,15 +10,14 @@ export function ChefTeaser() {
       <div className="mx-auto max-w-screen-2xl px-5 md:px-10 py-24 md:py-32 grid gap-12 md:gap-20 md:grid-cols-12 items-center">
         <div className="md:col-span-5 md:col-start-2">
           <figure className="relative aspect-[4/5] overflow-hidden bg-surface">
-            <BrandPlaceholder
-              primary="Chef Vee"
-              secondary="Founder · Lagos → Leicester"
-              seed="chef-vee-portrait"
-              className="absolute inset-0"
+            <Image
+              src="https://upload.wikimedia.org/wikipedia/commons/a/ab/SuyavarietiesTX.JPG"
+              alt="Skewers of suya — Nigerian grilled, spiced beef — over an open flame"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 40vw"
+              quality={75}
             />
-            <figcaption className="sr-only">
-              Portrait of Chef Vee — placeholder until shoot is delivered
-            </figcaption>
           </figure>
         </div>
         <div className="md:col-span-5">

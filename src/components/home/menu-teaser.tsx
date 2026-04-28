@@ -4,12 +4,12 @@ import { DISHES, SEASON } from "@/lib/menu";
 import { BrandPlaceholder } from "@/components/brand-placeholder";
 
 export function MenuTeaser() {
-  // Show 3 dishes — the smoked-marrow jollof, egusi, and chin-chin make a
-  // nice opener-main-finisher arc.
+  // Three signature dishes — pepper soup (the new soup lead), egusi (the
+  // classic), jollof (the icon). Showcases the soup focus immediately.
   const featured = [
-    "jollof-smoked-bone-marrow",
+    "pepper-soup-catfish",
     "egusi-stockfish-pounded-yam",
-    "chin-chin-cardamom-clotted-cream",
+    "jollof-smoked-bone-marrow",
   ]
     .map((slug) => DISHES.find((d) => d.slug === slug))
     .filter((d): d is NonNullable<typeof d> => Boolean(d));

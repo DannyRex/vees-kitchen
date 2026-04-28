@@ -69,6 +69,20 @@ export function SiteFooter() {
             </Link>
           </p>
         </div>
+        <div className="mx-auto max-w-screen-2xl px-5 pb-6 md:px-10 text-[11px] text-faint/80 leading-relaxed">
+          <p>
+            Food imagery courtesy of{" "}
+            <a
+              href="https://commons.wikimedia.org/wiki/Category:Cuisine_of_Nigeria"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-saffron transition-colors underline underline-offset-2"
+            >
+              Wikimedia Commons
+            </a>{" "}
+            contributors (CC BY-SA), pending our own shoot.
+          </p>
+        </div>
       </div>
     </footer>
   );

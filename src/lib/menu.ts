@@ -1,8 +1,9 @@
 /**
  * The current seasonal menu. Update this file when the menu rotates.
  *
- * Photography refs are Unsplash placeholders — replace with shoot images when
- * available (see docs/shoot-brief.md once created).
+ * Images are sourced from Wikimedia Commons (CC-licensed, stable URLs).
+ * When the photography shoot is complete, swap each `imageSrc` with the
+ * production URL — `imageAlt` should be updated to match the actual shot.
  */
 
 export type Region =
@@ -11,9 +12,10 @@ export type Region =
   | "Igbo (Eastern)"
   | "Hausa (Northern)"
   | "Calabar (Cross River)"
+  | "Niger Delta"
   | "Pan-Nigerian";
 
-export type Course = "starter" | "main" | "side" | "dessert";
+export type Course = "starter" | "main" | "soup" | "side" | "dessert";
 
 export interface Dish {
   slug: string;
@@ -26,20 +28,20 @@ export interface Dish {
   blurb: string; // 2–3 sentence sensorial description
   ingredients: string[]; // 4–6 hero ingredients
   pairing: string; // wine / drink suggestion (delivery context)
-  /**
-   * Until photography is shot, dishes use the brand-placeholder SVG
-   * keyed off `slug`. Once shoot images are in, add `imageSrc` here and
-   * the components will prefer it over the placeholder.
-   */
-  imageSrc?: string;
+  imageSrc: string;
   imageAlt: string;
   /** Allergen / dietary flags */
   notes: string[];
+  /**
+   * Wikimedia Commons attribution required when using these images.
+   * Keep this here so it can be surfaced in the page footer credits.
+   */
+  imageCredit?: string;
 }
 
 export const SEASON = {
   label: "Harmattan & Embers",
-  subtitle: "A six-course rotation, late autumn through winter.",
+  subtitle: "Three soups, a starter, a rice, a sweet — late autumn through winter.",
   validUntil: "2026-03-31",
 };
 
@@ -61,9 +63,86 @@ export const DISHES: Dish[] = [
       "Maldon salt",
     ],
     pairing: "A flute of dry English sparkling — Wiston Cuvée works.",
-    imageAlt:
-      "A dozen golden-fried puff-puff rounds glossed with honey-tamarind",
+    imageSrc:
+      "https://upload.wikimedia.org/wikipedia/commons/a/a3/Nigerian-puff-puff-recipe_cropped.jpg",
+    imageAlt: "A pile of golden Nigerian puff-puff dough rounds, freshly fried",
+    imageCredit: "Wikimedia Commons (CC BY-SA)",
     notes: ["Vegetarian", "Contains: gluten"],
+  },
+  {
+    slug: "pepper-soup-catfish",
+    name: "Pepper soup with catfish",
+    nativeName: "Ofe nsala / pepper soup",
+    course: "soup",
+    region: "Calabar (Cross River)",
+    price: 28,
+    blurb:
+      "A clear, fierce broth — uziza, uda, ehuru, calabash nutmeg — bloomed in beef bone stock and finished with thick steaks of farmed Cornish catfish. Served boiling. The kind of soup that resets a week.",
+    ingredients: [
+      "Catfish",
+      "Uziza seeds",
+      "Uda (negro pepper)",
+      "Calabash nutmeg",
+      "Scotch bonnet",
+      "Scent leaf",
+    ],
+    pairing: "An ice-cold lager. Star or Gulder if you can find it.",
+    imageSrc:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Assorted_meat_pepper_soup_at_Lagos_Island.jpg/3840px-Assorted_meat_pepper_soup_at_Lagos_Island.jpg",
+    imageAlt:
+      "A bowl of Nigerian pepper soup, dark broth flecked with herbs and chillies, photographed in Lagos",
+    imageCredit: "Wikimedia Commons (CC BY-SA)",
+    notes: ["Contains: fish"],
+  },
+  {
+    slug: "egusi-stockfish-pounded-yam",
+    name: "Egusi soup with stockfish & pounded yam",
+    nativeName: "Ofe egusi",
+    course: "soup",
+    region: "Igbo (Eastern)",
+    price: 26,
+    blurb:
+      "Ground egusi seeds bloomed in palm oil with locust bean, loosened with goat stock and a piece of Norwegian stockfish. Served with warm pounded white yam, hand-folded to order. Eat it with your right hand.",
+    ingredients: [
+      "Egusi (melon seed)",
+      "Stockfish (okporoko)",
+      "Palm oil",
+      "Locust bean (iru)",
+      "Bitterleaf",
+      "White yam",
+    ],
+    pairing: "An off-dry German Riesling — the residual sugar settles the heat.",
+    imageSrc:
+      "https://upload.wikimedia.org/wikipedia/commons/d/d0/EGUSI.JPG",
+    imageAlt:
+      "A bowl of egusi soup, golden with palm oil and dotted with leafy greens",
+    imageCredit: "Wikimedia Commons (CC BY-SA)",
+    notes: ["Contains: fish"],
+  },
+  {
+    slug: "banga-soup-starch",
+    name: "Banga soup with starch",
+    nativeName: "Ofe akwu / Banga",
+    course: "soup",
+    region: "Niger Delta",
+    price: 26,
+    blurb:
+      "Fresh palm fruit pressed and reduced for an hour, finished with beletientien, ataiko, and irugje. Earthy, perfumed, almost meaty without meat. Served with smooth Delta starch the colour of bone china.",
+    ingredients: [
+      "Palm fruit pulp",
+      "Beletientien (oburunbebe)",
+      "Ataiko",
+      "Irugje",
+      "Cassava starch",
+      "Smoked catfish",
+    ],
+    pairing: "A glass of cool Vouvray demi-sec.",
+    imageSrc:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Palm_nut_soup_close_up_02.jpg/3840px-Palm_nut_soup_close_up_02.jpg",
+    imageAlt:
+      "A close-up of banga (palm-fruit) soup, deep orange with chunks of fish and smoked meat",
+    imageCredit: "Wikimedia Commons (CC BY-SA)",
+    notes: ["Contains: fish"],
   },
   {
     slug: "jollof-smoked-bone-marrow",
@@ -71,10 +150,11 @@ export const DISHES: Dish[] = [
     nativeName: "Jollof",
     course: "main",
     region: "Lagos",
-    price: 26,
+    price: 24,
     blurb:
-      "Long-grain parboiled rice cooked in a tatashe-and-Scotch-bonnet base, finished over open flame. Folded with brown butter from a marrow bone roasted to bronze. The bottom is the prize.",
+      "Long-grain parboiled rice cooked in a tatashe-and-Scotch-bonnet base, finished over open flame for a proper party-jollof smoke. Folded with brown butter from a marrow bone roasted to bronze. The bottom is the prize.",
     ingredients: [
+      "Long-grain rice",
       "Tatashe (red bell)",
       "Scotch bonnet",
       "Beef bone marrow",
@@ -82,72 +162,11 @@ export const DISHES: Dish[] = [
       "Smoked paprika",
     ],
     pairing: "Côtes du Rhône — Grenache-led, peppery, modest weight.",
-    imageAlt:
-      "Smoky long-grain jollof rice with charred edges, folded with marrow brown butter",
+    imageSrc:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Jollof_Rice_with_Stew.jpg/3840px-Jollof_Rice_with_Stew.jpg",
+    imageAlt: "A heaping plate of Nigerian jollof rice, deep red and smoky",
+    imageCredit: "Wikimedia Commons (CC BY-SA)",
     notes: ["Contains: dairy"],
-  },
-  {
-    slug: "egusi-stockfish-pounded-yam",
-    name: "Egusi with stockfish & pounded yam",
-    nativeName: "Egusi efo",
-    course: "main",
-    region: "Igbo (Eastern)",
-    price: 28,
-    blurb:
-      "Ground egusi seeds bloomed in palm oil with locust bean, then loosened with goat stock and a single piece of Norwegian stockfish. Served beside warm pounded white yam, hand-folded to order.",
-    ingredients: [
-      "Egusi (melon seed)",
-      "Stockfish (okporoko)",
-      "Palm oil",
-      "Locust bean (iru)",
-      "White yam",
-    ],
-    pairing: "An off-dry German Riesling — the residual sugar settles the heat.",
-    imageAlt:
-      "Egusi stew with stockfish in palm oil, alongside a portion of warm pounded yam",
-    notes: ["Contains: fish"],
-  },
-  {
-    slug: "suya-aged-rib-eye",
-    name: "Suya, 35-day aged rib-eye",
-    nativeName: "Suya",
-    course: "main",
-    region: "Hausa (Northern)",
-    price: 30,
-    blurb:
-      "Skewered rib-eye, dredged in yaji — kuli-kuli, ginger, clove, dried bonnet — and fired close to the heat. Served on butcher paper with raw onion, tomato, and a wedge of lime.",
-    ingredients: [
-      "Aged rib-eye",
-      "Kuli-kuli (peanut)",
-      "Yaji spice",
-      "Red onion",
-      "Lime",
-    ],
-    pairing: "Côte-Rôtie if you're feeling generous; otherwise a chilled Beaujolais.",
-    imageAlt:
-      "Charred suya skewers of aged rib-eye dredged in yaji, served with raw onion and lime",
-    notes: ["Contains: peanut"],
-  },
-  {
-    slug: "ofada-ayamase",
-    name: "Ofada rice & ayamase",
-    nativeName: "Ofada & ayamase",
-    course: "main",
-    region: "Yoruba (Ogun)",
-    price: 24,
-    blurb:
-      "Short-grain heirloom ofada steamed in moin-moin leaf for fragrance, served beside a fierce green pepper stew with iru and assorted offal. Earthy, sour, intentionally untamed.",
-    ingredients: [
-      "Ofada rice",
-      "Green bell + bonnet",
-      "Iru (locust bean)",
-      "Tripe & shaki",
-      "Boiled egg",
-    ],
-    pairing: "Cool palm wine if you can find it; otherwise a young Vinho Verde.",
-    imageAlt:
-      "Heirloom ofada rice beside a green pepper ayamase stew with iru and offal",
-    notes: ["Contains: egg"],
   },
   {
     slug: "chin-chin-cardamom-clotted-cream",
@@ -166,8 +185,11 @@ export const DISHES: Dish[] = [
       "Demerara",
     ],
     pairing: "A small glass of Pedro Ximénez, very cold.",
+    imageSrc:
+      "https://upload.wikimedia.org/wikipedia/commons/c/c4/LoveChinChin.jpg",
     imageAlt:
-      "Crisp golden chin-chin squares dusted in cardamom sugar with clotted cream",
+      "Bowls of Nigerian chin-chin — small fried golden squares of sweet dough",
+    imageCredit: "Wikimedia Commons (CC BY-SA)",
     notes: ["Vegetarian", "Contains: gluten, dairy, sesame"],
   },
 ];
@@ -180,10 +202,17 @@ export function dishesByCourse(course: Course): Dish[] {
   return DISHES.filter((d) => d.course === course);
 }
 
-export const COURSE_ORDER: Course[] = ["starter", "main", "side", "dessert"];
+export const COURSE_ORDER: Course[] = [
+  "starter",
+  "soup",
+  "main",
+  "side",
+  "dessert",
+];
 
 export const COURSE_LABELS: Record<Course, string> = {
   starter: "To begin",
+  soup: "The soups",
   main: "The middle",
   side: "Alongside",
   dessert: "To finish",
